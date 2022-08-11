@@ -12,53 +12,56 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class PaymentTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Payment payment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("RentalApp");
-		
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
-		
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
-		
+		payment = em.find(Payment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
-		
+		payment = null;
 	}
 
+
 	@Test
-	void test_User_Entity_Mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUserName());
-		assertEquals(1, user.getId());
+	void test_Payment_mapping() {
+		assertNotNull(payment);
+		assertEquals(1, payment.getId());
+		assertEquals(1500,payment.getAmount());
 	}
 	
 	
 	@Test
-	void test_User_Property_Mapping() {
-		
-		assertNotNull(user.getProperties());
-		assertTrue(user.getProperties().size() > 0);
-		assertEquals("condo", user.getProperties().get(0).getPropertyType().getName());
-		
+	void test_Payment_to_property_Mapping() {
+		assertEquals(1, payment.getProperty().getId());
+		assertEquals("condo", payment.getProperty().getPropertyType().getName());
+		assertEquals(200000, payment.getProperty().getPurchaseAmount());
 	}
+	
+	
+	@Test
+	void test_Payment_To_Tenant_Mapping() {
+		assertEquals(1, payment.getTenant().getId());
+		assertEquals("John", payment.getTenant().getTenantName());
+	}
+	
 
 }

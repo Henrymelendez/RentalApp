@@ -12,53 +12,52 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class PropertyTypeTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private PropertyType property;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("RentalApp");
-		
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
-		
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
-		
+		property = em.find(PropertyType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
-		
+		property = null;
 	}
 
 	@Test
-	void test_User_Entity_Mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUserName());
-		assertEquals(1, user.getId());
+	void test_PropertyType_mapping() {
+		
+		assertNotNull(property);
+		assertEquals(1, property.getId());
+		assertEquals("condo", property.getName());
 	}
 	
 	
 	@Test
-	void test_User_Property_Mapping() {
+	void test_PropertyType_property_Mapping() {
 		
-		assertNotNull(user.getProperties());
-		assertTrue(user.getProperties().size() > 0);
-		assertEquals("condo", user.getProperties().get(0).getPropertyType().getName());
+		assertEquals(1, property.getProperties().get(0).getId());
+		assertEquals("2022-03-22", property.getProperties().get(0).getPurchaseDate());
+		assertEquals(200000, property.getProperties().get(0).getPurchaseAmount());
 		
 	}
+	
+	
 
 }

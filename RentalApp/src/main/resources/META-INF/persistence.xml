@@ -7,6 +7,11 @@
     <!-- begin Entities -->
 	
 	<class>com.project.rentalapp.entities.User</class>
+	<class>com.project.rentalapp.entities.Property</class>
+	<class>com.project.rentalapp.entities.Payment</class>
+	<class>com.project.rentalapp.entities.Tenant</class>
+	<class>com.project.rentalapp.entities.PropertyType</class>
+	<class>com.project.rentalapp.entities.Maintenance</class>
 	
 	
 	
@@ -15,10 +20,10 @@
 	<!-- end Entities -->
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/FIXME?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
-			<property name="javax.persistence.jdbc.user" value="FIXME" />
+				value="jdbc:mysql://localhost:3306/rentaldb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
+			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password"
-				value="FIXME" />
+				value="root" />
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 
