@@ -39,6 +39,9 @@ public class Payment {
 	@ManyToOne
 	@JoinColumn(name = "tenant_id")
 	private Tenant tenant;
+	
+	
+	
 
 	public Payment() {
 		// TODO Auto-generated constructor stub

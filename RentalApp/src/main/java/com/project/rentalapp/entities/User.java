@@ -1,5 +1,6 @@
 package com.project.rentalapp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -91,6 +92,29 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public void addProperty(Property prop) {
+		
+		if(properties == null) {
+			properties = new ArrayList<Property>();
+		}
+		
+		if(!properties .contains(prop)) {
+			prop.setUser(this);
+			properties.add(prop);
+		}
+		
+	}
+	
+	
+	public void removeProperty(Property prop) {
+		
+		prop.setUser(null);
+		
+		if(properties != null & properties.contains(prop)) {
+			properties.remove(prop);
+		}
 	}
 
 	@Override

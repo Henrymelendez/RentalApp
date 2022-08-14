@@ -1,6 +1,7 @@
 package com.project.rentalapp.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,6 +53,9 @@ public class Tenant {
 	@JsonIgnore
 	@OneToMany(mappedBy = "tenant")
 	private List<Maintenance> mantainance;
+	
+	
+	
 	
 
 	public int getId() {
@@ -117,6 +121,54 @@ public class Tenant {
 	public void setMantainance(List<Maintenance> mantainance) {
 		this.mantainance = mantainance;
 	}
+	
+	
+	public void addPayments(Payment pay) {
+		
+		if(payments == null) {
+			payments = new ArrayList<Payment>();
+		}
+		
+		if(!payments.contains(pay)) {
+			pay.setTenant(this);
+			payments.add(pay);
+		}
+		
+	}
+	
+	public void removePayment(Payment pay) {
+		
+		pay.setTenant(null);
+		
+		if(payments != null && payments.contains(pay)) {
+			payments.remove(pay);
+			
+		}
+		
+	}
+	
+	public void addMaintnance(Maintenance maint) {	
+		
+		if(mantainance == null) {
+			mantainance = new ArrayList<Maintenance>();
+		}
+		
+		if(!mantainance.contains(maint)) {
+			maint.setTenant(this);
+			mantainance.add(maint);
+		}	
+	}
+	
+	
+	public void removeMaintenace(Maintenance maint) {
+		
+		maint.setTenant(null);
+		
+		if(mantainance !=null && mantainance.contains(maint)) {
+			mantainance.remove(maint);
+		}
+	}
+	
 
 	@Override
 	public int hashCode() {

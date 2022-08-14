@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PropertyTypeTest {
-	
+class TenantTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private PropertyType property;
+	private Tenant tenant;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,33 +31,47 @@ class PropertyTypeTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		property = em.find(PropertyType.class, 1);
+		tenant = em.find(Tenant.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		property = null;
+		tenant = null;
 	}
 
+
+
 	@Test
-	void test_PropertyType_mapping() {
-		
-		assertNotNull(property);
-		assertEquals(1, property.getId());
-		assertEquals("condo", property.getName());
+	void test_Tenant_Mapping() {
+		assertEquals(1, tenant.getId());
+		assertEquals("7815584394", tenant.getPhoneNumber());
 	}
 	
 	
 	@Test
-	void test_PropertyType_property_Mapping() {
+	void test_Tenant_To_Payment() {
 		
-		assertEquals(1, property.getProperties().get(0).getId());
-		assertEquals(2022, property.getProperties().get(0).getPurchaseDate().getYear());
-		assertEquals(200000, property.getProperties().get(0).getPurchaseAmount());
+		assertEquals(1, tenant.getPayments().get(0).getId());
+		assertEquals("cash", tenant.getPayments().get(0).getModeOfPayment());
+		assertEquals(1500, tenant.getPayments().get(0).getAmount());
 		
 	}
 	
 	
+	@Test
+	void test_Tenant_To_Property() {
+		assertEquals(1, tenant.getProperty().getId());
+		assertEquals(22, tenant.getProperty().getPurchaseDate().getDayOfMonth());
+		assertEquals(200000, tenant.getProperty().getPurchaseAmount());
+	}
+	
+	@Test
+	void test_Tenant_To_Maintenance() {
+		
+		assertEquals(1, tenant.getMantainance().get(0).getId());
+		assertEquals("fix water heater", tenant.getMantainance().get(0).getDescription());
+		
+	}
 
 }

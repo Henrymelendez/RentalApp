@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PropertyTypeTest {
+class AddressTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private PropertyType property;
+	private Address address;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,32 +31,39 @@ class PropertyTypeTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		property = em.find(PropertyType.class, 1);
+		address = em.find(Address.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		property = null;
+		address = null;
 	}
 
+
 	@Test
-	void test_PropertyType_mapping() {
+	void test_Adress_Entity_Mapping() {
 		
-		assertNotNull(property);
-		assertEquals(1, property.getId());
-		assertEquals("condo", property.getName());
+		assertEquals("revere", address.getCity());
+		assertEquals("1 Agawam Street", address.getStreet());	
+		
 	}
 	
-	
 	@Test
-	void test_PropertyType_property_Mapping() {
+	void test_Address_To_Property_Mapping() {
 		
-		assertEquals(1, property.getProperties().get(0).getId());
-		assertEquals(2022, property.getProperties().get(0).getPurchaseDate().getYear());
-		assertEquals(200000, property.getProperties().get(0).getPurchaseAmount());
+		assertEquals(1, address.getProperty().getId());
+		assertEquals(2022, address.getProperty().getPurchaseDate().getYear());
 		
 	}
+	
+	@Test
+	void test_Address_To_Lease_Mapping() {
+		
+		assertEquals(1, address.getLease().getId());
+		assertEquals(2022, address.getLease().getEndDate().getYear());
+	}
+	
 	
 	
 

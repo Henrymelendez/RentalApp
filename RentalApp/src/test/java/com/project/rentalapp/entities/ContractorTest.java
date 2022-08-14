@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PropertyTypeTest {
-	
+class ContractorTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private PropertyType property;
+	private Contractor contractor;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,30 +31,30 @@ class PropertyTypeTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		property = em.find(PropertyType.class, 1);
+		contractor = em.find(Contractor.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		property = null;
+		contractor = null;
 	}
 
+	
+	
 	@Test
-	void test_PropertyType_mapping() {
+	void test_Contractor_Entity_Mapping() {
+		assertNotNull(contractor);
+		assertEquals(1, contractor.getId());
 		
-		assertNotNull(property);
-		assertEquals(1, property.getId());
-		assertEquals("condo", property.getName());
 	}
 	
 	
 	@Test
-	void test_PropertyType_property_Mapping() {
+	void test_Contractor_To_Maintenance_Mapping() {
 		
-		assertEquals(1, property.getProperties().get(0).getId());
-		assertEquals(2022, property.getProperties().get(0).getPurchaseDate().getYear());
-		assertEquals(200000, property.getProperties().get(0).getPurchaseAmount());
+		assertEquals(1, contractor.getMaintananceRequest().getId());
+		assertEquals("fix water heater", contractor.getMaintananceRequest().getDescription());
 		
 	}
 	

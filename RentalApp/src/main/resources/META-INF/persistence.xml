@@ -12,6 +12,9 @@
 	<class>com.project.rentalapp.entities.Tenant</class>
 	<class>com.project.rentalapp.entities.PropertyType</class>
 	<class>com.project.rentalapp.entities.Maintenance</class>
+	<class>com.project.rentalapp.entities.Address</class>
+	<class>com.project.rentalapp.entities.Lease</class>
+	<class>com.project.rentalapp.entities.Contractor</class>
 	
 	
 	

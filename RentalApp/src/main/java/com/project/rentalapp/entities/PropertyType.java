@@ -1,5 +1,6 @@
 package com.project.rentalapp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -98,7 +99,18 @@ public class PropertyType {
 	}
 	
 	
-	
+	public void addProperty(Property prop) {
+		
+		if(properties == null) {
+			properties = new ArrayList<Property>();
+		}
+		
+		if(!properties.contains(prop)) {
+			prop.setPropertyType(this);
+			properties.add(prop);
+			
+		}
+	}
 	
 
 }

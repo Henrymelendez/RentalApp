@@ -236,6 +236,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `rentaldb`.`address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rentaldb`;
+INSERT INTO `rentaldb`.`address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (1, '1 Agawam Street', NULL, 'revere', 'MA', '02151');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `rentaldb`.`user`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -271,6 +281,36 @@ COMMIT;
 START TRANSACTION;
 USE `rentaldb`;
 INSERT INTO `rentaldb`.`payment` (`id`, `amount`, `mode_of_payment`, `payment_notes`, `properties_id`, `tenant_id`, `payment_date`) VALUES (1, 1500, 'cash', NULL, 1, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `rentaldb`.`maintenance`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rentaldb`;
+INSERT INTO `rentaldb`.`maintenance` (`id`, `description`, `completed`, `properties_id`, `tenant_id`) VALUES (1, 'fix water heater', 1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `rentaldb`.`contractor`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rentaldb`;
+INSERT INTO `rentaldb`.`contractor` (`id`, `contractor_name`, `contact_address`, `maintenance_id`) VALUES (1, 'john heater service', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `rentaldb`.`lease`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rentaldb`;
+INSERT INTO `rentaldb`.`lease` (`id`, `start_date`, `end_date`, `description`, `rental_amount`, `security_deposit`, `pet_deposit`, `address_id`) VALUES (1, '2022-03-01', '2022-10-01', NULL, 1500, 1500, 0, 1);
 
 COMMIT;
 
