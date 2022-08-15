@@ -18,7 +18,7 @@ public class PropertyTypeImpl implements PropertyTypeService {
 	@Override
 	public PropertyType showPropertyType(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return propTypeRepo.findById(id);
 	}
 
 	@Override
