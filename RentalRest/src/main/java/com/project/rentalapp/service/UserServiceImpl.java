@@ -1,13 +1,13 @@
 package com.project.rentalapp.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.rentalapp.entities.Property;
 import com.project.rentalapp.entities.User;
+import com.project.rentalapp.repositories.PropertyRepository;
 import com.project.rentalapp.repositories.UserRepository;
 
 
@@ -16,6 +16,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	PropertyRepository propRepo;
 	
 
 	@Override
@@ -71,7 +74,7 @@ public class UserServiceImpl implements UserService {
 		if(!userRepo.existsById(id)) {
 			return null;
 		}
-		return null;
+		return propRepo.findByUser_Id(id);
 	}
 	
 	

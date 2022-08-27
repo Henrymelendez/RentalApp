@@ -28,6 +28,7 @@ public class Maintenance {
 	@Column(name = "completed")
 	private boolean completed;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "properties_id")
 	private Property property;

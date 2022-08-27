@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "lease")
 public class Lease {
@@ -39,6 +41,7 @@ public class Lease {
 	@Column(name = "pet_deposit")
 	private double petDeposit;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name ="address_id")
 	private Address address;

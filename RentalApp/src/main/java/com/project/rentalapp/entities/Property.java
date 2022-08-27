@@ -51,11 +51,11 @@ public class Property {
 	private List<Payment> payments;
 	
 	//
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "property")
 	private List<Tenant> tenants;
 	//
-	@JsonIgnore
+
 	@OneToMany(mappedBy = "property")
 	private List<Maintenance> maintenance;
 	

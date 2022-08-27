@@ -42,6 +42,7 @@ public class Tenant {
 	@Column(name = "email")
 	private String email;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "properties_id")
 	private Property property;
