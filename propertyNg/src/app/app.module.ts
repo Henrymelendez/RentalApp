@@ -1,3 +1,5 @@
+import { LeaseService } from './services/lease.service';
+import { PropertyService } from './services/property.service';
 import { TenantService } from './services/tenant.service';
 import { MaintenanceService } from './services/maintenance.service';
 import { AddressService } from './services/address.service';
@@ -39,7 +41,9 @@ import { AuthService } from './services/auth.service';
     MaintenanceService,
     ContractorService,
     AddressService,
-    TenantService
+    TenantService,
+    PropertyService,
+    LeaseService
 
   ],
   bootstrap: [AppComponent]
