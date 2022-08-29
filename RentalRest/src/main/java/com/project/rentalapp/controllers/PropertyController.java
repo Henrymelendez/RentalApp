@@ -129,5 +129,5 @@ public class PropertyController {
 		}
 	}
 	
-	
+	// FXME Create stats
 }
